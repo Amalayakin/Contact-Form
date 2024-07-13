@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #DEF9C4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form {
+            width: auto;
+            height: 70%;
+            background-color: white;
+            border-radius: 2%;
+            padding: 10px;
+        }
+        .name-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .email-container {
+            display: block;
+            align-items: stretch;
+        }
+        .cbox-fields {
+            display: flex;
+            justify-content: space-between;
+        }
+        input {
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+        #GeneralEnquiryLabel, #SupportRequestLabel {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        textarea {
+            border: 2px solid black;
+            border-radius: 1rem;
+        }
+        #fname, #lname {
+            height: 2.3rem;
+            width: 100%;
+        }
+        #emailAdd {
+            height: 2.3rem;
+            width: 100%;
+            flex-grow: 3;
+        }
+        .enquiry-container, .query-container {
+            border: 2px solid black;
+            min-width: 40%;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (max-width: 950px) {
+            #textbox {
+                width: 80%;
+            }
+            #GeneralEnquiryLabel, #SupportRequestLabel {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+            .input-container {
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                width: 100vw;
+                height: 100vh;
+                padding: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .form {
+                width: 100vw;
+                height: 80vh;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+        .btn {
+            min-width: 130px;
+            height: 40px;
+            color: #fff;
+            padding: 5px 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            outline: none;
+            border-radius: 5px;
+            border: none;
+            background: #ff6392;
+            box-shadow: 0 5px #ff0a78;
+        }
+        .btn:hover {
+            box-shadow: 0 3px #ff0a78;
+            top: 1px;
+        }
+        .btn:active {
+            box-shadow: 0 0 #ff0a78;
+            top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <h1>Contact Us</h1>
+        <form id="contactForm">
+            <div class="input-container name-container">
+                <div class="fname-container">
+                    <label for="fname">First Name</label><br>
+                    <input type="text" id="fname" name="fname"><br><br>
+                </div>
+                <div class="lname-container">
+                    <label for="lname">Last Name</label><br>
+                    <input type="text" id="lname" name="lname"><br><br>
+                </div>
+            </div>
+            <div class="email-container">
+                <label for="emailAddress">Email Address</label><br>
+                <input type="email" id="emailAdd" name="email"><br><br>
+            </div>
+            <div class="checkbox-container">
+                <label for="QueryMessage">Query Type</label><br>
+                <div class="cbox-fields">
+                    <div class="enquiry-container">
+                        <input type="checkbox" id="GeneralEnquiry" name="generalenquiry" value="GeneralEnquiry">
+                        <label for="QueryMessage" id="GeneralEnquiryLabel">GeneralEnquiry</label>
+                    </div>
+                    <div class="query-container">
+                        <input type="checkbox" id="SupportRequest" name="supportrequest" value="SupportRequest">
+                        <label for="QueryMessage" id="SupportRequestLabel">SupportRequest</label><br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="msg-container">
+                <label for="Message">Message</label><br>
+                <textarea id="textbox" name="message" rows="5" cols="60"></textarea><br><br>
+            </div>
+            <div class="btn-container">
+                <button class="btn" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var first_name = document.getElementById("fname").value;
+            var last_name = document.getElementById("lname").value;
+            var email = document.getElementById("emailAdd").value;
+            var enquiry = document.getElementById("GeneralEnquiry").checked ? document.getElementById("GeneralEnquiry").value : "";
+            var request = document.getElementById("SupportRequest").checked ? document.getElementById("SupportRequest").value : "";
+            var feedback = document.getElementById("textbox").value;
+
+            localStorage.setItem('first_name', first_name);
+            localStorage.setItem('last_name', last_name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('enquiry', enquiry);
+            localStorage.setItem('request', request);
+            localStorage.setItem('feedback', feedback);
+        });
+    </script>
+</body>
+</html>
